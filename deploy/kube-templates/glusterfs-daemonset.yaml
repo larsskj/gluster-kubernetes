@@ -1,6 +1,6 @@
 ---
 kind: DaemonSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: glusterfs
   labels:
@@ -16,6 +16,10 @@ spec:
         glusterfs: pod
         glusterfs-node: pod
     spec:
+      selector:
+        matchLabels:
+          glusterfs: pod
+          glusterfs-node: pod
       nodeSelector:
         storagenode: glusterfs
       hostNetwork: true
